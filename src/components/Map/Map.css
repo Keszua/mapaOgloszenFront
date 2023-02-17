@@ -3,3 +3,8 @@
     /* height: calc(100vh - 48px); */
     height: 100%;
 }
+
+.leaflet-container {
+    height: 100%;
+
+}
