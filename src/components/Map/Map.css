@@ -1,7 +1,7 @@
 .map {
     background: #0a0;
-    /* height: calc(100vh - 48px); */
-    height: 100%;
+    height: calc(100vh - 48px);
+    /* height: 100%; */
 }
 
 .leaflet-container {
