@@ -5,29 +5,24 @@ import '../../utils/fix-map-icon';
 import { useContext, useEffect, useState } from 'react';
 import { SearchContext } from '../contexts/search.context';
 import { SimpleAdEntity } from 'types';
+import { SingleAd } from './SingleAd';
 
 export const Map = () => {
     const {search} = useContext(SearchContext);
     const [ads, setAds] = useState<SimpleAdEntity[]>([]);
 
-    // useEffect( () => {
-    //     console.log('Make request');
-    // },[search]);
-
     useEffect( () => {
         (async () => {
-            const res = fetch('http://loclahost:3001/ad/search');
-            const data = await (await res).json();
+            const res = await fetch(`http://localhost:3001/ad/search/${search}`);
+            const data = await res.json();
 
             setAds(data);
         })();
-    },[]);
+    },[search]);
 
     return (
         <div className="map">
-            <h1>
-                Search for: {search}
-            </h1>
+            <h1>Skończyłem na T5D4 21:50</h1>
             <MapContainer center={[51.4097, 21.1301]} zoom={18} scrollWheelZoom={false}> 
                 <TileLayer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"           
@@ -35,9 +30,9 @@ export const Map = () => {
                 />
                 {
                     ads.map(ad => (
-                        <Marker position={[51.4099, 21.1301]} >
+                        <Marker key={ad.id} position={[ad.lat, ad.lon]} >
                             <Popup>
-                                Twoja pozycja
+                                <SingleAd id={ad.id}/>
                             </Popup>
                         </Marker>    
                     ))
