@@ -24,6 +24,10 @@ export const SingleAd = (props: Props) => {
     }
 
     return <h2>
-        {ad.name}
+        <h2>{ad.name}</h2>
+        <p>{ad.description}</p>
+        {!!ad.price && <p><b>{ad.price} zł</b></p>}
+        <hr/>
+        <a href={ad.url} target="_blank" rel="noreferrer">Otwórz ogłoszenie</a>
     </h2>;
 }
